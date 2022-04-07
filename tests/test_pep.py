@@ -32,7 +32,7 @@ def test_pep_spider_attrs():
         'Класс `PepSpider` должен иметь атрибут `start_urls`.'
     )
     assert PepSpider.start_urls == ['https://peps.python.org/'], (
-        'В классе PepSpider для атрибута start_urls установите значение '
+        'В классе PepSpider для атрибута start_urls установите список со значением '
         'https://peps.python.org/'
     )
 
