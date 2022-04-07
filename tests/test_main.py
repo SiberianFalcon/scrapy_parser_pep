@@ -44,7 +44,7 @@ def test_run_scrapy(monkeypatch, tmpdir):
         if str(file).endswith('.csv')
     ]
     assert dirs == ['results'], (
-        'Убедитесь что в директории создается директория `results` для '
+        'Убедитесь что в директории pep_parse создается директория `results` для '
         'вывода в файл результатов.'
     )
     assert len(output_files) == 2, (
