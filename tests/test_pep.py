@@ -31,9 +31,9 @@ def test_pep_spider_attrs():
     assert hasattr(PepSpider, 'start_urls'), (
         'Класс `PepSpider` должен иметь атрибут `start_urls`.'
     )
-    assert PepSpider.start_urls == ['https://www.python.org/dev/peps/'], (
+    assert PepSpider.start_urls == ['https://peps.python.org/'], (
         'В классе PepSpider для атрибута start_urls установите значение '
-        'https://www.python.org/dev/peps/'
+        'https://peps.python.org/'
     )
 
 
