@@ -60,7 +60,7 @@ def test_item_pipelines():
     assert item_pipelines[0] == 'pep_parse.pipelines.PepParsePipeline', (
         'Ключом пайплайна в настройках `ITEM_PIPELINES` должен быть класс.'
     )
-    assert ITEM_PIPELINES['pep_parse.pipelines.PepParsePipeline'] == 300, (
+    assert ITEM_PIPELINES['pep_parse.pipelines.PepParsePipeline'] in range(1000), (
         'В качестве значения для ключа `pep_parse.pipelines.PepParsePipeline` '
-        'в настройках укажите `300`'
+        'в настройках укажите значение из диапазона от `0` и до `1000`'
     )
