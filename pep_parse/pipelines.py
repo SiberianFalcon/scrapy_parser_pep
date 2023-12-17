@@ -1,9 +1,7 @@
 import csv
 from datetime import datetime
+
 from .settings import BASE_DIR
-
-
-
 
 
 class PepParsePipeline:
