@@ -19,7 +19,8 @@ class PepSpider(scrapy.Spider):
     def parse_pep(self, response):
         for pep_page in response.css('section#pep-content'):
             data = {
-                'number': (pep_page.css('h1.page-title::text').get()).split()[1],
+                'number': (
+                    pep_page.css('h1.page-title::text').get()).split()[1],
                 'name': (pep_page.css(
                     'h1.page-title::text').get()).split('–')[1],
                 'status': pep_page.css('dl abbr::text').get()
