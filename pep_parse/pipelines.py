@@ -1,13 +1,14 @@
 import csv
 from datetime import datetime
-from pathlib import Path
+from .settings import BASE_DIR
 
 
-BASE_DIR = Path(__file__).resolve().parent.parent
+
 
 
 class PepParsePipeline:
     def __init__(self):
+        self.results_dir = BASE_DIR / 'results'
         self.result_list = dict()
         self.count = 0
 
@@ -21,7 +22,7 @@ class PepParsePipeline:
 
     def close_spider(self, spider):
         date = datetime.today().strftime(
-            'results/status_summary_%Y-%m-%d_%H-%M-%S.csv')
+            f'{self.results_dir}/status_summary_%Y-%m-%d_%H-%M-%S.csv')
 
         with open(date, 'a', encoding='utf-8') as f:
             f = csv.writer(f, dialect='unix', delimiter=',')
