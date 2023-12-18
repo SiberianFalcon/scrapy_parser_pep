@@ -28,10 +28,9 @@ class PepSpider(scrapy.Spider):
                 (row_string.get()).split()[self.SLIDE_WITH_NAME:])
 
             if response.css('h1.page-title span.pre::text').get() is not None:
-                name_value = (
-                        ' '.join((row_string.get()).split()[
-                                 self.SLIDE_WITH_NAME:])
-                        + ' ' + response.css('span.pre::text').get())
+                name_value = (' '.join((row_string.get()).split()[
+                              self.SLIDE_WITH_NAME:]) + ' ' + response.css(
+                    'span.pre::text').get())
 
             data = {
                 'number': (
