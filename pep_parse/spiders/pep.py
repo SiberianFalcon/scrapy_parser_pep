@@ -1,6 +1,13 @@
 import scrapy
-
+from tqdm import tqdm
 from ..items import PepParseItem
+
+
+pars_bar = tqdm(
+    total=628,
+    colour='magenta',
+    desc='Получаем данные из документации'
+)
 
 
 class PepSpider(scrapy.Spider):
@@ -17,7 +24,9 @@ class PepSpider(scrapy.Spider):
                 yield response.follow(pep_doc.get(), callback=self.parse_pep)
 
     def parse_pep(self, response):
+
         for pep_page in response.css('section#pep-content'):
+
             data = {
                 'number': (
                     pep_page.css('h1.page-title::text').get()).split()[1],
@@ -25,5 +34,7 @@ class PepSpider(scrapy.Spider):
                     'h1.page-title::text').get()).split('–')[1],
                 'status': pep_page.css('dl abbr::text').get()
             }
-
+            pars_bar.update(1)
             yield PepParseItem(data)
+
+
