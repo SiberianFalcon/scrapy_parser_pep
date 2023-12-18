@@ -1,6 +1,13 @@
 import scrapy
+from tqdm import tqdm
 
-from ..items import PepParseItem, pars_bar
+from ..items import PepParseItem
+
+pars_bar = tqdm(
+    total=628,
+    colour='magenta',
+    desc='Получаем данные из документации'
+)
 
 
 class PepSpider(scrapy.Spider):
