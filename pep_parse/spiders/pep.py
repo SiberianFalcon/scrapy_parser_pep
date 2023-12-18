@@ -1,5 +1,5 @@
 import scrapy
-from tqdm import tqdm
+
 from ..items import PepParseItem, pars_bar
 
 
