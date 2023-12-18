@@ -9,7 +9,6 @@ class PepParsePipeline:
         self.DATE_FORMAT = '%Y-%m-%d_%H-%M-%S'
         self.RESULT_DIR = BASE_DIR / 'results'
 
-
     def open_spider(self, spider):
         self.result_list = dict()
 
