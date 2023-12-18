@@ -29,5 +29,3 @@ class PepSpider(scrapy.Spider):
             }
             pars_bar.update(1)
             yield PepParseItem(data)
-
-
