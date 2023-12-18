@@ -22,16 +22,20 @@ class PepSpider(scrapy.Spider):
 
     def parse_pep(self, response):
 
-
-
         for pep_page in response.css('section#pep-content'):
             row_string = pep_page.css('h1.page-title::text')
+            name_value = ' '.join(
+                (row_string.get()).split()[self.SLIDE_WITH_NAME:])
+
+            if response.css('h1.page-title span.pre::text').get() is not None:
+                name_value = (' '.join(
+                    (row_string.get()).split()[self.SLIDE_WITH_NAME:])
+                    + ' ' + response.css('span.pre::text').get())
 
             data = {
                 'number': (
                     row_string.get()).split()[self.PART_WITH_NUM],
-                'name': ' '.join((
-                    row_string.get()).split()[self.SLIDE_WITH_NAME:]),
+                'name': name_value,
                 'status': pep_page.css('dl abbr::text').get()
             }
 
