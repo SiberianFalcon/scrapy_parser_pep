@@ -8,6 +8,10 @@ class PepSpider(scrapy.Spider):
     allowed_domains = ['peps.python.org']
     start_urls = ['https://peps.python.org/']
 
+    def __init__(self):
+        self.PART_WITH_NUM = 1
+        self.SLIDE_WITH_NAME = 3
+
     def parse(self, response):
         for pep_doc in response.css((
                 'section#numerical-index tbody tr '
@@ -17,13 +21,17 @@ class PepSpider(scrapy.Spider):
                 yield response.follow(pep_doc.get(), callback=self.parse_pep)
 
     def parse_pep(self, response):
+
+
+
         for pep_page in response.css('section#pep-content'):
+            row_string = pep_page.css('h1.page-title::text')
 
             data = {
                 'number': (
-                    pep_page.css('h1.page-title::text').get()).split()[1],
-                'name': (pep_page.css(
-                    'h1.page-title::text').get()).split('–')[1],
+                    row_string.get()).split()[self.PART_WITH_NUM],
+                'name': ' '.join((
+                    row_string.get()).split()[self.SLIDE_WITH_NAME:]),
                 'status': pep_page.css('dl abbr::text').get()
             }
 
