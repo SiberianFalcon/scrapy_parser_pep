@@ -22,9 +22,9 @@ class PepSpider(scrapy.Spider):
         page_title = response.css('title::text')
 
         data = {
-                'number': (page_title.get()).split(' ', 2)[1],
-                'name': (page_title.get()).split(' ', 3)[3][:-18],
-                'status': response.css('dl abbr::text').get()
+            'number': (page_title.get()).split(' ', 2)[1],
+            'name': (page_title.get()).split(' ', 3)[3][:-18],
+            'status': response.css('dl abbr::text').get()
         }
 
         yield PepParseItem(data)
