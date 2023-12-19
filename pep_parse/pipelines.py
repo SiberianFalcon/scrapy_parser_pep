@@ -14,8 +14,8 @@ class PepParsePipeline:
         self.result_list = dict()
 
     def process_item(self, item, spider):
-        self.result_list[item['status']] = self.result_list.get(item[
-            'status'], 0) + 1
+        self.result_list[
+            item['status']] = self.result_list.get(item['status'], 0) + 1
         return item
 
     def close_spider(self, spider):
