@@ -5,15 +5,17 @@ from .settings import BASE_DIR
 
 
 class PepParsePipeline:
-    RESULT_DIR = BASE_DIR / 'results'
     DATE_FORMAT = '%Y-%m-%d_%H-%M-%S'
+
+    def __init__(self):
+        self.RESULT_DIR = BASE_DIR / 'results'
 
     def open_spider(self, spider):
         self.result_list = dict()
 
     def process_item(self, item, spider):
-        self.result_list[
-            item['status']] = self.result_list.get(item['status'], 0) + 1
+        self.result_list[item['status']] = self.result_list.get(item[
+            'status'], 0) + 1
         return item
 
     def close_spider(self, spider):
