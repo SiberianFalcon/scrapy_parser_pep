@@ -7,9 +7,6 @@ from .settings import BASE_DIR
 class PepParsePipeline:
     DATE_FORMAT = '%Y-%m-%d_%H-%M-%S'
 
-    def __init__(self):
-        self.RESULT_DIR = BASE_DIR / 'results'
-
     def open_spider(self, spider):
         self.result_list = dict()
 
@@ -20,7 +17,7 @@ class PepParsePipeline:
 
     def close_spider(self, spider):
         file_name = datetime.today().strftime(
-            f'{self.RESULT_DIR}/status_summary_{self.DATE_FORMAT}.csv')
+            f'{BASE_DIR}/results/status_summary_{self.DATE_FORMAT}.csv')
 
         with open(file_name, 'a', encoding='utf-8') as f:
             f = csv.writer(f, dialect='unix', delimiter=',')
