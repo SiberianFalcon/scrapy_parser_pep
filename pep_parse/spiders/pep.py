@@ -5,7 +5,8 @@ from ..items import PepParseItem
 
 class PepSpider(scrapy.Spider):
     PART_WITH_NUM = 1
-    SLIDE_WITH_NAME = 1
+    PART_WITH_NUM = 3
+    SLIDE_WITH_NAME = -18
     name = 'pep'
     allowed_domains = ['peps.python.org']
     start_urls = ['https://peps.python.org/']
@@ -22,8 +23,10 @@ class PepSpider(scrapy.Spider):
         page_title = response.css('title::text')
 
         data = {
-            'number': (page_title.get()).split(' ', 2)[1],
-            'name': (page_title.get()).split(' ', 3)[3][:-18],
+            'number': (page_title.get()).split(' ', 2)[self.PART_WITH_NUM],
+            'name': (
+                page_title.get()).split(
+                ' ', 3)[self.PART_WITH_NUM][:self.SLIDE_WITH_NAME],
             'status': response.css('dl abbr::text').get()
         }
 
