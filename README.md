@@ -1,4 +1,6 @@
-# scrapy_parser_pep
+![Static Badge](https://img.shields.io/badge/Python-gray) ![Static Badge](https://img.shields.io/badge/Scrapy-blue)
+
+# Парсер документации PEP-Python на Scrapy
 
 Данный скрипт позволяет "пробежаться" по документации Python и собрать
 актуальные статусы документации и сосчитать количество статусов. 
